@@ -89,14 +89,14 @@ aside{
 }
 aside>p{
     color: rgb(20,20,20);
-    font-size: 14px;
+    font-size: 12px;
     padding: 10px;
     font-family: 'Times New Roman', Times, serif;
     @media (max-width:991px) {
         padding: 10px !important;
         padding-bottom: 20px !important;
         height: auto !important;
-       
+        font-size: 11px;
     }
 
 }
