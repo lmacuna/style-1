@@ -75,7 +75,7 @@ aside{
     display: flex;
     justify-content: center;
     align-items: start;
-    @media (max-width:800px) {
+    @media (max-width:991px) {
         height: auto;
         flex-direction: column;
         justify-content: space-between;
@@ -91,7 +91,7 @@ aside>p{
     font-family: 'Times New Roman', Times, serif;
     @media (max-width:991px) {
         padding: 10px;
-        height: auto;
+        height: auto !important;
     }
 
 }
