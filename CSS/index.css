@@ -89,6 +89,10 @@ aside>p{
    
     padding: 10px;
     font-family: 'Times New Roman', Times, serif;
+    @media (max-width:991px) {
+        padding: 10px;
+        height: auto;
+    }
 
 }
 aside>p::first-letter{
