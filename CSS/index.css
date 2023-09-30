@@ -80,7 +80,7 @@ aside{
     align-items: start;
     @media (max-width:991px) {
         height: auto !important;
-        flex-direction: column;
+        flex-direction: column !important;
         justify-content: space-between;
         align-items: start !important;
         padding-bottom:20px;
