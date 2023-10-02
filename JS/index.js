@@ -8,22 +8,41 @@ form.addEventListener('submit', (e) => {
     nombre = document.querySelector('[name=nombre]').value
     email = document.querySelector('[name=email]').value
     var r = window.confirm("Enviar datos?")
-
+    
+  
+       
+       
+    
     
     if (r === true) {
 
         if (nombre !== "" && email !== "") {
-            return (document.querySelector("#mostrar").innerText = 'Enviando registro...',
+           var resp = validarEmail(email)
+            if (resp === true) {
+             document.querySelector("#mostrar").innerText = 'Enviando registro...'
 
+                    setTimeout(() => {
+                        buscarDatos(nombre, email)
+                    }, 3000)
+                     e.target.reset()
+                     setTimeout(() => {
+                        limpiar()
+                    }, 3000)
+            } else if (resp === false) {
+                document.querySelector("#mostrar").innerHTML = '<span style="color:red;font-weight:bold;animation: lowmessage 4s">*Correo electronico no valido o incorrecto</span>',
+                document.querySelector("#ok-email").innerHTML = '<span style="color:red">X</span>',
                 setTimeout(() => {
-                    buscarDatos(nombre, email)
-                }, 3000), e.target.reset(),limpiar())
+
+                    document.querySelector("#mostrar").innerText = 'Respuesta aqui'
+                }, 5000)
+               
+            }
         } else if (nombre === "" || email === "") {
             document.querySelector("#mostrar").innerHTML = '<span style="color:red;font-weight:bold;animation: lowmessage 4s">Falta completar uno o mas campos</span>'
             document.querySelector("#ok-nombre").innerHTML = '<span style="color:red">X</span>'
             document.querySelector("#ok-email").innerHTML = '<span style="color:red">X</span>'
             setTimeout(() => {
-                
+
                 document.querySelector("#mostrar").innerText = 'Respuesta aqui'
             }, 5000)
         }
@@ -34,12 +53,15 @@ form.addEventListener('submit', (e) => {
 
 })
 
-
-function saludo() {
-    console.log("Hello world")
+const validarEmail =(email) => {
+    var expReg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+    let testeoEmail = expReg.test(email)
+    return testeoEmail
 }
 
-const usuarios = [{ nombre: 'lucas', email: 'lucas@live' }]
+
+
+const usuarios = [{ nombre: 'lucas', email: 'lucas@live.com' }]
 
 
 const buscarDatos = (nombre, email) => {
@@ -50,8 +72,8 @@ const buscarDatos = (nombre, email) => {
             document.querySelector("#mostrar").innerText = 'Usuario existente!!!'
             setTimeout(() => {
                 document.querySelector("#mostrar").innerText = 'Respuesta aqui'
-                nombre=""
-                email=""
+                nombre = ""
+                email = ""
             }, 4000);
         } else {
             mostrarDatos(nombre, email)
@@ -71,8 +93,8 @@ const mostrarDatos = (nombre, email) => {
     return (document.querySelector("#mostrar").innerHTML = `<span style="animation: lowmessage 4s">Registrado con exito &#x2713;</span><br><span style="animation: lowmessage 4s">  Nombre: ${nombre}</span><br><span style="animation: lowmessage 4s"> Email: ${email}</span>`,
         setTimeout(() => {
             document.querySelector("#mostrar").innerText = 'Respuesta aqui'
-            nombre=""
-            email=""
+            nombre = ""
+            email = ""
         }, 7000))
 }
 
@@ -112,7 +134,7 @@ inputEmail.addEventListener('input', (e) => {
 })
 
 
-const limpiar=()=>{
+const limpiar = () => {
     document.querySelector("#ok-email").innerHTML = ''
     document.querySelector("#ok-nombre").innerHTML = ''
 }
